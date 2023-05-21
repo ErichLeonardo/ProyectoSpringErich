@@ -31,4 +31,5 @@ public class Cliente {
             inverseJoinColumns = @JoinColumn(name = "platos_id"))
     private Set<Plato> platos = new LinkedHashSet<>();
 
+
 }

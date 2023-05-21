@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Título</title>
+</head>
+<body>
+<h1>Tabla de Clientes</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cliente : ${clientes}">
+        <td th:text="${cliente.id}"></td>
+        <td th:text="${cliente.nombre}"></td>
+        <td th:text="${cliente.telefono}"></td>
+    </tr>
+    </tbody>
+
+</table>
+
+<h1>Tabla de Platos</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="plato : ${platos}">
+        <td th:text="${plato.id}"></td>
+        <td th:text="${plato.nombre}"></td>
+        <td th:text="${plato.precio}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<form action="/agregar-cliente" method="post">
+    <h2>Añadir Cliente</h2>
+    <label for="nombreCliente">Nombre:</label>
+    <input type="text" name="nombre" id="nombreCliente" required>
+
+    <label for="telefonoCliente">Teléfono:</label>
+    <input type="text" name="telefono" id="telefonoCliente" required>
+
+    <button type="submit">Añadir Cliente</button>
+</form>
+
+<form action="/agregar-plato" method="post">
+    <h2>Añadir Plato</h2>
+    <label for="nombrePlato">Nombre:</label>
+    <input type="text" name="nombre" id="nombrePlato" required>
+
+    <label for="precioPlato">Precio:</label>
+    <input type="number" name="precio" id="precioPlato" required>
+
+    <button type="submit">Añadir Plato</button>
+</form>
+
+<form action="/asociar-platos" method="post">
+    <h2>Asociar Platos a Cliente</h2>
+    <label for="cliente">Cliente:</label>
+    <select name="cliente" id="cliente">
+        <option value="">Seleccione un cliente</option>
+        <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nombre}"></option>
+    </select>
+
+    <label for="platos">Platos:</label>
+    <select name="platos" id="platos" multiple>
+        <option value="">Seleccione uno o varios platos</option>
+        <option th:each="plato : ${platos}" th:value="${plato.id}" th:text="${plato.nombre}"></option>
+    </select>
+
+    <button type="submit">Asociar Platos</button>
+</form>
+
+<form action="/borrar-cliente" method="post">
+    <h2>Borrar Cliente</h2>
+    <label for="clienteBorrar">Cliente:</label>
+    <select name="clienteBorrar" id="clienteBorrar">
+        <option value="">Seleccione un cliente</option>
+        <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nombre}"></option>
+    </select>
+    <button type="submit">Borrar Cliente</button>
+</form>
+
+<form action="/borrar-plato" method="post">
+    <h2>Borrar Plato</h2>
+    <label for="platoBorrar">Plato:</label>
+    <select name="platoBorrar" id="platoBorrar">
+        <option value="">Seleccione un plato</option>
+        <option th:each="plato : ${platos}" th:value="${plato.id}" th:text="${plato.nombre}"></option>
+    </select>
+    <button type="submit">Borrar Plato</button>
+</form>
+
+<!-- Formulario para actualizar cliente -->
+<form action="/actualizar-cliente" method="post">
+    <h2>Actualizar Cliente</h2>
+    <label for="clienteActualizar">Cliente:</label>
+    <select name="clienteActualizar" id="clienteActualizar">
+        <option value="">Seleccione un cliente</option>
+        <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nombre}"></option>
+    </select>
+    <label for="nombreClienteActualizar">Nombre:</label>
+    <input type="text" name="nombreClienteActualizar" id="nombreClienteActualizar" required>
+    <label for="telefonoClienteActualizar">Teléfono:</label>
+    <input type="text" name="telefonoClienteActualizar" id="telefonoClienteActualizar" required>
+    <button type="submit">Actualizar Cliente</button>
+</form>
+
+<!-- Formulario para actualizar plato -->
+<form action="/actualizar-plato" method="post">
+    <h2>Actualizar Plato</h2>
+    <label for="platoActualizar">Plato:</label>
+    <select name="platoActualizar" id="platoActualizar">
+        <option value="">Seleccione un plato</option>
+        <option th:each="plato : ${platos}" th:value="${plato.id}" th:text="${plato.nombre}"></option>
+    </select>
+    <label for="nombrePlatoActualizar">Nombre:</label>
+    <input type="text" name="nombrePlatoActualizar" id="nombrePlatoActualizar" required>
+    <label for="precioPlatoActualizar">Precio:</label>
+    <input type="number" name="precioPlatoActualizar" id="precioPlatoActualizar" required>
+    <button type="submit">Actualizar Plato</button>
+</form>
+
+
+
+</body>
+</html>
